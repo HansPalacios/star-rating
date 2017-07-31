@@ -1,5 +1,7 @@
 document.addEventListener("DOMContentLoaded",function(){
-  ratingHoverStars(document.querySelector(".rating"));
+  document.querySelectorAll(".rating").forEach(function(el) {
+    ratingHoverStars(el);
+  });
 });
 
 // the mouseover hover effect
@@ -18,9 +20,14 @@ function ratingHoverStars( el ) {
     })());
     // attach the mouseout event for resetting
     el.addEventListener("mouseout",function(event){
-      setStarRating(el,~~el.getAttribute("data-default"));
+      setDefaultRating(el);
     });
+    // and also reset
+    setDefaultRating(el);
   });
+}
+function setDefaultRating(el){
+  setStarRating(el,~~el.getAttribute("data-default"));
 }
 
 /* Set the Star Rating

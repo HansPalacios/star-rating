@@ -9,10 +9,31 @@ document.addEventListener("DOMContentLoaded",function(){
 function ratingHoverStars( el ) {
   console.log("ratingHoverStars", el)
   el.querySelectorAll("div").forEach( function(div,index) {
-    console.log("attaching event listeners", div, index)
-    div.addEventListener("mouseover",function(event){
-      console.log(event);
-      el.className = "rating " + event.target.className;
+    // attach the mousover effect for star hovering
+    div.addEventListener("mouseover",(function(){
+      let starNum = index+1;
+      return function(event){
+        setStarRating(el,starNum);
+      };
+    })());
+    // attach the mouseout event for resetting
+    el.addEventListener("mouseout",function(event){
+      setStarRating(el,~~el.getAttribute("data-default"));
     });
+  });
+}
+
+/* Set the Star Rating
+ *
+ * @param elRating - the rating element container w/ stars inside
+ * @param stars - the number of stars to active (0-5)
+ */
+function setStarRating( elRating, stars ) {
+  elRating.querySelectorAll("div").forEach(function(div,index){
+    if( index+1 <= stars ) {
+      div.classList.add("active");
+    } else {
+      div.classList.remove("active");
+    }
   });
 }

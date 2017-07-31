@@ -12,32 +12,8 @@
 	height:40px;
 	float:left;
 }
-.rating a {
-		z-index: 2;
-}
-.rating:after {
-	content: '';
-	position: absolute;
-	left:0;
-	top:0;
-	bottom:0;
-	z-index:1;
+.rating div.active {
 	background-image: url('img/starlist.svg');
 	background-size: 200px;
 	background-repeat: no-repeat;
-}
-.rating.star1:after {
-	right: 80%;
-}
-.rating.star2:after {
-	right: 60%;
-}
-.rating.star3:after {
-	right: 40%;
-}
-.rating.star4:after {
-	right: 20%;
-}
-.rating.star5:after {
-	right: 0;
 }
